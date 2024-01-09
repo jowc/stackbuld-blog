@@ -1,1 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+// variables
+@import "./variable.scss";
+
+// start tailwind
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// end tailwind
+
+//  Reset CSS
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// end Reset
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  color: var(--roomie-global-color);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter";
+    overflow-wrap: break-word;
+    font-weight: 600;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+
+  p {
+    overflow-wrap: break-word;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+    width: inherit;
+  }
+
+  a {
+    color: var(--roomie-primary);
+    font-weight: 500;
+  }
+}

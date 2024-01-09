@@ -1,0 +1,21 @@
+$primary-color: #c6538c;
+
+$stackbuld-shadow-hash: 0 0 40px #5c258d, 0 1px 1px 0 #ff3cac, 0 1px 3px 0 #2b86c5;
+$stackbuld-shadow-soft: 0 0 40px #5c258d54, 0 1px 1px 0 #ff3cac78,
+  0 1px 3px 0 #2b86c56b;
+
+:root {
+  --stackbuld-primary: #2b38c5;
+  --stackbuld-secondary: #1bb30acc;
+  --stackbuld-success: #2b38c5;
+  --stackbuld-warn: #FDB022;
+  --stackbuld-error: #D92D20;
+  --stackbuld-pending: #FD853A;
+  --stackbuld-highlight: #F5CF4FDE;
+  --stackbuld-gray-label: #344054;
+  --stackbuld-global-color: #191818;
+  --stackbuld-form-border: #D0D5DD;
+  --stackbuld-shadow-hash: 0 0 40px #5c258d, 0 1px 1px 0 #ff3cac, 0 1px 3px 0 #2b86c5;
+  --stackbuld-shadow-soft: 0 0 40px #5c258d54, 0 1px 1px 0 #ff3cac78,
+    0 1px 3px 0 #2b86c56b;
+}
