@@ -1,0 +1,48 @@
+stackbuild-input{
+    transition: border 1s ease linear;
+}
+
+
+.stackbuild-outline{
+    padding-block: 6px;
+    padding-inline: 10px;
+    outline: none;
+    border: 1px solid var(--stackbuild-form-border);
+    border-radius: 8px;
+}
+
+.stackbuild-hide{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    display: flex;
+    cursor: pointer;
+}
+
+input[placeholder]{
+    color: var(--stackbuild-gray-label);
+}
+
+stackbuild-input.ng-dirty.ng-invalid{
+   input.stackbuild-outline{
+        border: 2px solid var(--stackbuild-error);
+    }
+
+    .material-symbols-outlined{
+        color: var(--stackbuild-error);
+    }
+}
+
+form.ng-submitted.ng-invalid{
+
+    stackbuild-input.ng-invalid{
+        input.stackbuild-outline{
+             border: 2px solid var(--stackbuild-error);
+         }
+     
+         .material-symbols-outlined{
+             color: var(--stackbuild-error);
+         }
+    }
+}

@@ -1,3 +1,7 @@
+:host{
+    position: relative;
+}
+
 a, span{
     @apply text-[var(--stackbuld-gray-label)] hover:text-[var(--stackbuld-global-color)] font-normal hover:font-medium transition-all duration-500 ease-linear;
 }

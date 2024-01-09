@@ -1,0 +1,35 @@
+<div id="stackbuld-input-container" class="relative flex flex-col">
+    @if(showLable){
+    <section>
+        <label class="capitalize text-sm text-rommie-gray-label" [for]="label">{{label}} </label>
+    </section>
+    }
+
+    <section class="relative">
+
+        @if(showPlacehoder){
+        <input #textField id="stackbuld-input-container-field" [id]="label" [type]="type"
+            class="w-full stackbuld-outline" [class]="class" [placeholder]="placeholder" [value]="text"
+            (keyup)="onType(textField.value)" (click)="markAsTouched()">
+        } @else {
+        <input #textField id="stackbuld-input-container-field" [id]="label" [type]="type"
+            class="w-full stackbuld-outline" [class]="class" [placeholder]="placeholder" [value]="text"
+            (keyup)="onType(textField.value)" (click)="markAsTouched()">
+        }
+        @if (label.includes('password') || label.includes('Password')) {
+        <div class="stackbuld-hide" (click)="toggleVisibility()">
+            @if(visible){
+            <span class="material-symbols-outlined">
+                visibility
+            </span>
+            } @else {
+            <span class="material-symbols-outlined">
+                visibility_off
+            </span>
+            }
+        </div>
+        }
+
+    </section>
+    <section class="mt-2 text-left"> <ng-content select="stackbuld-error" /> </section>
+</div>
