@@ -3,9 +3,9 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./pages/blog/feature/blog/blog.component').then(
-        (m) => m.BlogComponent
+    loadChildren: () =>
+      import('./pages/blog/feature/blog-shell/blog-shell.module').then(
+        (m) => m.BlogShellModule
       ),
   },
   {

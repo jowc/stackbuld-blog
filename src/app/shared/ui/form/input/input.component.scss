@@ -1,17 +1,17 @@
-stackbuild-input{
+stackbuld-input{
     transition: border 1s ease linear;
 }
 
 
-.stackbuild-outline{
+.stackbuld-outline{
     padding-block: 6px;
     padding-inline: 10px;
     outline: none;
-    border: 1px solid var(--stackbuild-form-border);
+    border: 1px solid var(--stackbuld-form-border);
     border-radius: 8px;
 }
 
-.stackbuild-hide{
+.stackbuld-hide{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -21,28 +21,28 @@ stackbuild-input{
 }
 
 input[placeholder]{
-    color: var(--stackbuild-gray-label);
+    color: var(--stackbuld-gray-label);
 }
 
-stackbuild-input.ng-dirty.ng-invalid{
-   input.stackbuild-outline{
-        border: 2px solid var(--stackbuild-error);
+stackbuld-input.ng-dirty.ng-invalid{
+   input.stackbuld-outline{
+        border: 2px solid var(--stackbuld-error);
     }
 
     .material-symbols-outlined{
-        color: var(--stackbuild-error);
+        color: var(--stackbuld-error);
     }
 }
 
 form.ng-submitted.ng-invalid{
 
-    stackbuild-input.ng-invalid{
-        input.stackbuild-outline{
-             border: 2px solid var(--stackbuild-error);
+    stackbuld-input.ng-invalid{
+        input.stackbuld-outline{
+             border: 2px solid var(--stackbuld-error);
          }
      
          .material-symbols-outlined{
-             color: var(--stackbuild-error);
+             color: var(--stackbuld-error);
          }
     }
 }
