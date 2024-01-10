@@ -1,0 +1,88 @@
+<nav class="hidden sm:flex justify-center fixed top-0 z-50 w-full backdrop-blur bg-white/80 p-3 shadow">
+
+    <section class="flex items-center justify-between w-full max-w-6xl">
+
+        <div>
+            <img class="w-44" src="assets/stackbuld-logo.webp" width="180" />
+        </div>
+
+        <div class="flex items-center gap-x-5">
+
+            <div>
+                <a class="no-underline" routerLink="">Home</a>
+            </div>
+            <div class="relative group">
+                <span class="block cursor-pointer">Tags</span>
+
+                <section
+                    class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute transition-all duration-200 ease-linear">
+                    <div class="bg-white flex flex-col gap-y-2 mt-7 p-4 min-w-36 shadow">
+                        <a class="block cursor-pointer" href="">Cats</a>
+                        <a class="block cursor-pointer" href="">Dogs</a>
+                        <a class="block cursor-pointer" href="">Money</a>
+                    </div>
+                </section>
+            </div>
+            <div>
+                <a class="no-underline" routerLink="">Add Blog</a>
+            </div>
+
+        </div>
+
+    </section>
+
+</nav>
+<!-- Mobile navigation -->
+
+<nav class="fixed top-0 z-50 w-full flex justify-between backdrop-blur bg-gray-20/80 px-4 py-3 shadow sm:hidden">
+
+    <section class="flex items-center justify-between w-full max-w-6xl">
+
+        <div>
+            <img class="w-32" src="assets/stackbuld-logo.webp" width="120" />
+        </div>
+
+        <div>
+
+            <div (click)="menuOpen.set(!menuOpen())">
+                <fa-icon [icon]="faBars()" />
+            </div>
+
+        </div>
+
+    </section>
+
+
+    @if(menuOpen()){
+    <section
+        class="absolute inset-0 top-14 w-full shadow">
+
+        <div class="flex flex-col gap-y-2 backdrop-blur bg-white p-4">
+
+            <div>
+                <a class="no-underline" routerLink="">Home</a>
+            </div>
+            <div class="">
+                <div (click)="tabOpen.set(!tabOpen())">Tags</div>
+
+                @if (tabOpen()) {
+                <section class="mt-2 mx-1 p-3 bg-gray-50 transition-all duration-200 ease-linear">
+                    <div class="flex flex-col gap-y-2">
+                        <a class="block cursor-pointer" href="">Cats</a>
+                        <a class="block cursor-pointer" href="">Dogs</a>
+                        <a class="block cursor-pointer" href="">Money</a>
+                    </div>
+                </section>
+                }
+
+            </div>
+            <div>
+                <a class="no-underline" routerLink="">Add Blog</a>
+            </div>
+
+        </div>
+
+    </section>
+    }
+
+</nav>

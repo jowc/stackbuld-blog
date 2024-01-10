@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
+        lexend: ["Lexend", "sans-serif"],
+      },
+      colors: {
+        primary: "#2b38c5",
       },
     },
   },
