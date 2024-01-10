@@ -8,5 +8,5 @@ import { PostPreviewInterface } from '../../../../shared/utils/types/server-resp
   templateUrl: './blog-card.component.html',
 })
 export class BlogCardComponent {
-  @Input() data!: PostPreviewInterface;
+  @Input() data!: PostPreviewInterface | any;
 }

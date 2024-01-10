@@ -7,8 +7,14 @@
 
     <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     
-        <app-blog-card [routerLink]="['.', '1']" [relativeTo]="route" />
-    
+        @for (blogPost of blogs| paginate: { itemsPerPage: 9, currentPage: p, totalItems: blogs.length}; track $index) {
+        <app-blog-card [data]="blogPost" [routerLink]="['.', '1']" [relativeTo]="route" />
+        }
+        
+        </section>
+
+    <section>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </section>
 
 </section>

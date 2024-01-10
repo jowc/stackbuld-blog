@@ -1,18 +1,18 @@
 <div class="flex flex-col gap-y-4 pb-6 max-w-sm rounded overflow-hidden shadow-lg bg-white cursor-pointer">
-    <img class="w-full h-48 object-cover" src="/assets/media/car-invest.jpg" height="192" width="320"
+    <img class="w-full h-48 object-cover" [src]="data.image" height="192" width="320"
         alt="Blog Card Image">
     <div class="px-6">
         <span class="block text-sm text-blue-400">Investments</span>
 
-        <div class="font-bold text-xl mb-2">Blog Card Title</div>
+        <div class="font-bold text-xl mb-2">{{data.title}}</div>
         <p class="text-gray-700 text-base">
-            Blog card content...
+            {{data.body.slice(0, 50)}}...
         </p>
         </div>
         <div class="px-6">
             <div class="flex item-baseline justify-between">
-                <span class="block text-sm capitalize">Mark Joe</span>
-                <span class="block text-sm">12/3/2021</span>
+                <span class="block text-sm capitalize">{{data.author}}</span>
+                <span class="block text-sm">{{data.updated}}</span>
             </div>
         </div>
         </div>
