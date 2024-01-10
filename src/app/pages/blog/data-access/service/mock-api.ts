@@ -6,6 +6,7 @@ export const mockblog = [
     image: '/assets/media/car-invest.jpg',
     created: '20/12/23',
     updated: '09/1/24',
+    id: 1,
   },
   {
     title: 'Blog title 3',
@@ -14,6 +15,7 @@ export const mockblog = [
     image: '/assets/media/car-invest.jpg',
     created: '20/12/23',
     updated: '09/1/24',
+    id: 2,
   },
   {
     title: 'Blog title 4',
@@ -22,5 +24,6 @@ export const mockblog = [
     image: '/assets/media/car-invest.jpg',
     created: '20/12/23',
     updated: '09/1/24',
+    id: 3,
   },
 ];

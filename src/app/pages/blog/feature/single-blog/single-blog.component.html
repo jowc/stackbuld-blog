@@ -1,49 +1,38 @@
+<dialog #editModal class="inset-1/2 -translate-x-1/2 -translate-y-1/2 min-w-96 min-h-96">
+    <div class="flex justify-end pr-5 pt-2 text-base">
+        <fa-icon class="cursor-pointer" [icon]="faXmark()" (click)="editModal.close()" />
+    </div>
+    <app-edit-blog-form [data]="blog()" />
+</dialog>
+
 <section class="my-24 sm:my-40 flex flex-col items-center">
 
     <section class="flex flex-col gap-y-10 mb-10 max-w-xl w-full">
-
-        <h1 class="capitalize">Blog title here</h1>
+        
+        <h1 class="capitalize">{{blog().title}}</h1>
 
         <div class="flex item-baseline justify-between">
-            <span class="w-1/2 text-sm capitalize flex items-end">By: Mark Joe</span>
+            <span class="w-1/2 text-sm capitalize flex items-end">By: {{blog().author}}</span>
 
             <div class="flex gap-x-2">
-                <span class="block text-s">Created: 12/3/2021</span>
-                <span class="block text-s">Updated: 12/3/2021</span>
+                <span class="block text-s">Created: {{blog().created}}</span>
+                <span class="block text-s">Updated: {{blog().updated}}</span>
             </div>
         </div>
 
         <div class="flex flex-col gap-y-10">
 
-            <img class="w-full h-80 object-cover rounded shadow" src="/assets/media/car-invest.jpg" height="330"
+            <img class="w-full h-80 object-cover rounded shadow" [src]="blog().image" height="330"
                 width="320" alt="Blog Card Image">
 
             <p>
-                They encourage customers to consider adding complementary or related items to their cart.
-
-                This not only increases the average order value but also creates a more comprehensive shopping
-                experience.
-
-                The concept of order bumps takes advantage of the psychological principle of impulse buying.
-
-                When customers are already in a buying mood, they are more likely to respond positively to well-placed
-                additional offers.
-
-                This is particularly effective when the offers are related to the products someone is already interested
-                in.
-
-                Let’s say a customer is purchasing a gardening tool. Showcasing other gardening-related products as
-                order bumps can make their purchase more complete and appealing.
-
-                And if you look at the numbers, the power of this technique is clear.
-
-                Implementing order bumps can lead to a significant increase in revenue.
+                {{blog().body}}
             </p>
 
         </div>
 
         <div class="flex item-baseline justify-between">
-            <div class="flex item-baseline justify-between gap-x-2 text-primary cursor-pointer">
+            <div class="flex item-baseline justify-between gap-x-2 text-primary cursor-pointer" (click)="openModal()">
                 <fa-icon [icon]="faPen()" />
                 <span>edit</span>
             </div>
