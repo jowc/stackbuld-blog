@@ -9,6 +9,13 @@ const routes: Routes = [
     loadComponent: () =>
       import('../blog/blog.component').then((m) => m.BlogComponent),
   },
+  {
+    path: ':id',
+    loadComponent: () =>
+      import('../single-blog/single-blog.component').then(
+        (m) => m.SingleBlogComponent
+      ),
+  },
 ];
 
 @NgModule({

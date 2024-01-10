@@ -8,7 +8,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
     @if(!loading){
     <button
       id="stackbuld-button"
-      class="bg-secondary disabled:bg-secondary/50 py-2 text-white text-base font-semibold rounded-lg"
+      class="bg-blue-500 hover:bg-blue-700 disabled:bg-primary/50 py-2 text-white text-base font-semibold rounded-lg"
       [class]="class"
       [type]="type"
       [disabled]="disabled"
@@ -18,7 +18,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
     }@else {
     <button
       id="stackbuld-button"
-      class="bg-secondary disabled:bg-secondary/50 py-2 text-white text-base font-semibold rounded-lg"
+      class="bg-blue-500 hover:bg-blue-700 disabled:bg-primary/50 py-2 text-white text-base font-semibold rounded-lg"
       [class]="class"
       [type]="type"
       [disabled]="loading"

@@ -1,12 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+  faFacebook,
+  faInstagram,
+  faXTwitter,
+} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [],
+  imports: [FontAwesomeModule],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-
+  faFacebook = signal(faFacebook);
+  faTwitter = signal(faXTwitter);
+  faInstagram = signal(faInstagram);
 }

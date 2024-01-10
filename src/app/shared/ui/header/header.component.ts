@@ -13,6 +13,6 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent {
   menuOpen = signal(false);
-  tagOpen = signal(false);
+  tabOpen = signal(false);
   faBars = signal(faBars);
 }

@@ -48,6 +48,14 @@ body {
     @apply text-2xl;
   }
 
+  h2 {
+    @apply text-xl;
+  }
+
+  h3 {
+    @apply text-lg;
+  }
+
   p {
     overflow-wrap: break-word;
   }
@@ -65,8 +73,8 @@ body {
   button,
   textarea,
   select {
-    font: inherit;
-    width: inherit;
+    width: 100%;
+    border: 1px solid var(--stackbuld-form-border);
   }
 
   a {
