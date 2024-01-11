@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import * as BlogActions from './blog.actions';
 import {
   ListInterface,
-  PostInterface,
+  PostPreviewInterface,
 } from '../../../../shared/utils/types/model';
 
 export enum StatusEnum {
@@ -66,8 +66,8 @@ export const BlogsReducer = createReducer(
     status: StatusEnum.loading,
   })),
   on(BlogActions.editPostSuccess, (state, { post }) => {
-    const copiedPosts: PostInterface[] = [...state.data.data];
-    const oldPostIndex = (<PostInterface[]>state.data).findIndex(
+    const copiedPosts: PostPreviewInterface[] = [...state.data.data];
+    const oldPostIndex = (<PostPreviewInterface[]>state.data).findIndex(
       (post) => post.id === post.id
     );
     copiedPosts[oldPostIndex] = post;
@@ -85,7 +85,9 @@ export const BlogsReducer = createReducer(
   })),
   on(BlogActions.deletePostSuccess, (state, { id }) => ({
     ...state,
-    data: (<PostInterface[]>state.data.data).filter((post) => post.id !== id),
+    data: (<PostPreviewInterface[]>state.data.data).filter(
+      (post) => post.id !== id
+    ),
     message: '',
     status: StatusEnum.loading,
   })),
