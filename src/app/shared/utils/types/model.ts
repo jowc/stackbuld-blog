@@ -1,5 +1,5 @@
 export interface ListInterface {
-  data: PostInterface | UserPreviewInterface | CommentInterface[];
+  data: PostInterface[] | UserPreviewInterface[] | CommentInterface[];
   total: number;
   page: number;
   limit: number;
@@ -16,9 +16,9 @@ export interface UserPreviewInterface {
 export interface PostCreateInterface {
   text: string;
   image: string;
-  likes: number;
-  tags: string[];
-  owner: string;
+  likes?: number;
+  tags?: string[];
+  owner?: string;
 }
 
 export interface PostPreviewInterface {

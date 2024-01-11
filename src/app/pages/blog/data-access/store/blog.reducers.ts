@@ -1,5 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import * as BlogActions from './blog.actions';
+import {
+  ListInterface,
+  PostInterface,
+} from '../../../../shared/utils/types/model';
 
 export enum StatusEnum {
   pending = 'pending',
@@ -9,10 +13,12 @@ export enum StatusEnum {
 }
 
 export interface BlogsStateInterface {
-  data: any;
+  data: ListInterface | any;
   message: string;
   status: StatusEnum;
 }
+
+// write a complete reducer using the above interface
 
 export const initialState: BlogsStateInterface = {
   data: null,
@@ -22,18 +28,68 @@ export const initialState: BlogsStateInterface = {
 
 export const BlogsReducer = createReducer(
   initialState,
-  on(BlogActions.getBlogs, (state) => ({
+  on(BlogActions.getPosts, (state) => ({
     ...state,
     message: '',
     status: StatusEnum.loading,
   })),
-  on(BlogActions.getBlogsSuccess, (state, { data }) => ({
+  on(BlogActions.getPostsSuccess, (state, { posts }) => ({
     ...state,
-    data,
+    data: posts,
     message: '',
     status: StatusEnum.success,
   })),
-  on(BlogActions.getBlogsFailure, (state, { message }) => ({
+  on(BlogActions.getPostsFailure, (state, { message }) => ({
+    ...state,
+    message,
+    status: StatusEnum.error,
+  })),
+  on(BlogActions.addPost, (state, { post }) => ({
+    ...state,
+    message: '',
+    status: StatusEnum.loading,
+  })),
+  on(BlogActions.addPostSuccess, (state, { post }) => ({
+    ...state,
+    data: { post, ...state.data.data },
+    message: '',
+    status: StatusEnum.success,
+  })),
+  on(BlogActions.addPostFailure, (state, { message }) => ({
+    ...state,
+    message,
+    status: StatusEnum.error,
+  })),
+  on(BlogActions.editPost, (state, { post }) => ({
+    ...state,
+    message: '',
+    status: StatusEnum.loading,
+  })),
+  on(BlogActions.editPostSuccess, (state, { post }) => {
+    const copiedPosts: PostInterface[] = [...state.data.data];
+    const oldPostIndex = (<PostInterface[]>state.data).findIndex(
+      (post) => post.id === post.id
+    );
+    copiedPosts[oldPostIndex] = post;
+    return {
+      ...state,
+      data: copiedPosts,
+      message: '',
+      status: StatusEnum.success,
+    };
+  }),
+  on(BlogActions.deletePost, (state) => ({
+    ...state,
+    message: '',
+    status: StatusEnum.loading,
+  })),
+  on(BlogActions.deletePostSuccess, (state, { id }) => ({
+    ...state,
+    data: (<PostInterface[]>state.data.data).filter((post) => post.id !== id),
+    message: '',
+    status: StatusEnum.loading,
+  })),
+  on(BlogActions.deletePostFailure, (state, { message }) => ({
     ...state,
     message,
     status: StatusEnum.error,

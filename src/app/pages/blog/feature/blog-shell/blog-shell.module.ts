@@ -24,9 +24,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    // StoreModule.forFeature('blogs', BlogsReducer),
-  ],
+  imports: [RouterModule.forChild(routes)],
 })
 export class BlogShellModule {}

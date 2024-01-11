@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PostPreviewInterface } from '../../../../shared/utils/types/server-response.types';
+import { PostPreviewInterface } from '../../../../shared/utils/types/model';
 
 @Component({
   selector: 'app-blog-card',

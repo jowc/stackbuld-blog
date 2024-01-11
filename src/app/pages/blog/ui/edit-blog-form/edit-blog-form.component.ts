@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { InputComponent } from '../../../../shared/ui/form/input/input.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../../shared/ui/form/button/button.component';
-import { PostPreviewInterface } from '../../../../shared/utils/types/server-response.types';
+import { PostPreviewInterface } from '../../../../shared/utils/types/model';
 
 @Component({
   selector: 'app-edit-blog-form',
