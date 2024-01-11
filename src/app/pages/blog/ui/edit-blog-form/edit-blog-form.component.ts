@@ -20,15 +20,14 @@ export class EditBlogFormComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    console.log(this.data.title);
     this.updateForm();
   }
 
   updateForm() {
     return this.editForm.patchValue({
-      text: this.data.title,
-      image: this.data.image,
-      title: this.data.body,
+      text: this.data?.title,
+      image: this.data?.image,
+      title: this.data?.body,
     });
   }
 

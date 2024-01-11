@@ -3,30 +3,26 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'blog',
+    pathMatch: 'full',
+  },
+  {
+    path: 'blog',
     loadChildren: () =>
       import('./pages/blog/feature/blog-shell/blog-shell.module').then(
         (m) => m.BlogShellModule
       ),
   },
   {
-    path: 'tags',
+    path: '404',
     loadComponent: () =>
-      import('./pages/archive/feature/archive/archive.component').then(
-        (m) => m.ArchiveComponent
+      import('./pages/not-found/feature/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent
       ),
   },
   {
-    path: 'about',
-    loadComponent: () =>
-      import('./pages/about/feature/about/about.component').then(
-        (m) => m.AboutComponent
-      ),
-  },
-  {
-    path: 'contact-us',
-    loadComponent: () =>
-      import('./pages/contact/feature/contact/contact.component').then(
-        (m) => m.ContactComponent
-      ),
+    path: '**',
+    redirectTo: '404',
+    pathMatch: 'full',
   },
 ];

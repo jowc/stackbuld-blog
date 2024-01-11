@@ -10,6 +10,11 @@ const routes: Routes = [
       import('../blog/blog.component').then((m) => m.BlogComponent),
   },
   {
+    path: 'add-blog',
+    loadComponent: () =>
+      import('../add-blog/add-blog.component').then((m) => m.AddBlogComponent),
+  },
+  {
     path: ':id',
     loadComponent: () =>
       import('../single-blog/single-blog.component').then(
