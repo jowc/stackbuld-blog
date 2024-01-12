@@ -9,7 +9,7 @@ export enum StatusEnum {
   error = 'error',
 }
 
-export interface BlogsStateInterface {
+export interface BlogStateInterface {
   data: PostPreviewInterface | any;
   message: string;
   status: StatusEnum;
@@ -17,7 +17,7 @@ export interface BlogsStateInterface {
 
 // write a complete reducer using the above interface
 
-export const initialState: BlogsStateInterface = {
+export const initialState: BlogStateInterface = {
   data: null,
   message: '',
   status: StatusEnum.pending,
@@ -40,5 +40,19 @@ export const BlogReducer = createReducer(
     ...state,
     message,
     status: StatusEnum.error,
-  }))
+  })),
+  on(BlogActions.editPost, (state, { post }) => ({
+    ...state,
+    message: '',
+    status: StatusEnum.loading,
+  })),
+  on(BlogActions.editPostSuccess, (state, { post }) => {
+    const updatedPost = { ...state.data, ...post };
+    return {
+      ...state,
+      data: updatedPost,
+      message: '',
+      status: StatusEnum.success,
+    };
+  })
 );

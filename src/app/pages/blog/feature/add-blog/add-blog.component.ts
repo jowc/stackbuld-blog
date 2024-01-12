@@ -13,7 +13,7 @@ import { AppState } from '../../../../shared/data-access/store/app.state';
 import { addPost } from '../../data-access/store/blogs.actions';
 import { PostCreateInterface } from '../../../../shared/utils/types/model';
 import { environment } from '../../../../../environments/environment.development';
-import { selectBlogAll } from '../../data-access/store/blogs.selector';
+import { selectBlogState } from '../../data-access/store/blogs.selector';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ErrorTextComponent } from '../../../../shared/ui/form/error-text/error-text.component';
 
@@ -32,7 +32,7 @@ import { ErrorTextComponent } from '../../../../shared/ui/form/error-text/error-
 })
 export class AddBlogComponent {
   public readonly store = inject(Store<AppState>);
-  blogsAll$ = this.store.select(selectBlogAll);
+  blogState$ = this.store.select(selectBlogState);
 
   createPostForm = new FormGroup({
     text: new FormControl<string>('', {

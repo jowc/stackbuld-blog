@@ -2,31 +2,37 @@
     <div class="flex justify-end pr-5 pt-2 text-base">
         <fa-icon class="cursor-pointer" [icon]="faXmark()" (click)="editModal.close()" />
     </div>
-    <app-edit-blog-form [data]="blog()" />
+    <app-edit-blog-form [data]="(postState$ | async)?.data" />
 </dialog>
 
+@if ((postState$ | async)?.data; as post;) {
 <section class="my-24 sm:my-40 flex flex-col items-center">
 
     <section class="flex flex-col gap-y-10 mb-10 max-w-xl w-full">
-        
-        <h1 class="capitalize">{{blog().title}}</h1>
+
+        <h1 class="capitalize">{{post.text.slice(0,12)}}</h1>
 
         <div class="flex item-baseline justify-between">
-            <span class="w-1/2 text-sm capitalize flex items-end">By: {{blog().author}}</span>
+            <span class="w-1/2 text-sm capitalize flex items-end">By: {{post.owner.title}} {{post.owner.firstName}}
+                {{post.owner.lastName}}</span>
 
             <div class="flex gap-x-2">
-                <span class="block text-s">Created: {{blog().created}}</span>
-                <span class="block text-s">Updated: {{blog().updated}}</span>
+                <span class="block text-s">Created: {{post.publishDate | date}}</span>
+                <span class="block text-s">Updated: {{post.publishDate | date}}</span>
             </div>
         </div>
+        <div class="flex flex-col gap-y-5">
 
-        <div class="flex flex-col gap-y-10">
+            <img class="w-full h-80 object-cover rounded shadow" [src]="post.image" height="330" width="320" alt="Blog Card Image">
 
-            <img class="w-full h-80 object-cover rounded shadow" [src]="blog().image" height="330"
-                width="320" alt="Blog Card Image">
+            <div class="flex items-baseline gap-x-2 flex-nowrap m-0 -mt-3 overflow-x-auto">
+                @for(tag of post.tags; track $index){
+                <span class="block text-sm text-blue-400">#{{tag}}</span>
+                }
+            </div>
 
             <p>
-                {{blog().body}}
+                {{post.text}}
             </p>
 
         </div>
@@ -37,7 +43,7 @@
                 <span>edit</span>
             </div>
 
-            <div class="flex item-baseline justify-between gap-x-2 text-red-500 cursor-pointer">
+            <div class="flex item-baseline justify-between gap-x-2 text-red-500 cursor-pointer" (click)="deletePost(post.id)">
                 <fa-icon [icon]="faTrash()" />
                 <span>delete</span>
             </div>
@@ -54,3 +60,11 @@
     </section>
 
 </section>
+}@else if ((postState$ | async)?.status === 'loading') {
+<stackbuld-skeleton class="h-80" />
+<stackbuld-skeleton class="h-70 mt-4" />
+<stackbuld-skeleton class="h-40 mt-3" />
+}
+@else {
+<stackbuld-error [message]="(postState$ | async)?.message" />
+}

@@ -4,6 +4,7 @@ import {
   ListInterface,
   PostPreviewInterface,
 } from '../../../../shared/utils/types/model';
+import * as postActions from '../../feature/single-blog/data-access/store/blog.action';
 
 export enum StatusEnum {
   pending = 'pending',
@@ -26,7 +27,7 @@ export const initialState: BlogsStateInterface = {
   status: StatusEnum.pending,
 };
 
-export const BlogReducer = createReducer(
+export const BlogsReducer = createReducer(
   initialState,
   on(BlogActions.getPosts, (state) => ({
     ...state,
@@ -60,24 +61,6 @@ export const BlogReducer = createReducer(
     message,
     status: StatusEnum.error,
   })),
-  on(BlogActions.editPost, (state, { post }) => ({
-    ...state,
-    message: '',
-    status: StatusEnum.loading,
-  })),
-  on(BlogActions.editPostSuccess, (state, { post }) => {
-    const copiedPosts: PostPreviewInterface[] = [...state.data.data];
-    const oldPostIndex = (<PostPreviewInterface[]>state.data).findIndex(
-      (post) => post.id === post.id
-    );
-    copiedPosts[oldPostIndex] = post;
-    return {
-      ...state,
-      data: copiedPosts,
-      message: '',
-      status: StatusEnum.success,
-    };
-  }),
   on(BlogActions.deletePost, (state) => ({
     ...state,
     message: '',
@@ -86,7 +69,7 @@ export const BlogReducer = createReducer(
   on(BlogActions.deletePostSuccess, (state, { id }) => ({
     ...state,
     data: (<PostPreviewInterface[]>state.data.data).filter(
-      (post) => post.id !== id
+      (post) => post.id === id
     ),
     message: '',
     status: StatusEnum.loading,

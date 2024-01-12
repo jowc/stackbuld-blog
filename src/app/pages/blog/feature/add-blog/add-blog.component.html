@@ -11,11 +11,11 @@
             <stackbuld-error message="this field is required and should be 6-50 characters" />
             }
             
-            @if ((blogsAll$|async)?.status === 'error') {
-            <stackbuld-error [message]="(blogsAll$|async)?.message" />
+            @if ((blogState$|async)?.status === 'error') {
+            <stackbuld-error [message]="(blogState$|async)?.message" />
             }
             
-            <stackbuld-button class="w-3/5" type="submit" text="Post comment" [loading]="(blogsAll$|async)?.status === 'loading'"
+            <stackbuld-button class="w-3/5" type="submit" text="Post comment" [loading]="(blogState$|async)?.status === 'loading'"
                 [disabled]="createPostForm.invalid" />
         </form>
     </div>

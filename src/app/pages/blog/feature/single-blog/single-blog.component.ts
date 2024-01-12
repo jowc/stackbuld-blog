@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   OnDestroy,
@@ -13,8 +14,15 @@ import { faPen, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { BlogCommentFormComponent } from '../../ui/comment-form/comment-form.component';
 import { BlogCommentComponent } from '../../ui/comment/comment.component';
 import { SubscriptionHandler } from '../../../../shared/utils/sub-handler/subscription-handler';
-import { mockblog } from '../../data-access/service/mock-api';
 import { EditBlogFormComponent } from '../../ui/edit-blog-form/edit-blog-form.component';
+import { AppState } from '../../../../shared/data-access/store/app.state';
+import { Store } from '@ngrx/store';
+import { getPost } from './data-access/store/blog.action';
+import { postState, selectPostState } from './data-access/store/blog.selector';
+import { CommonModule } from '@angular/common';
+import { ErrorTextComponent } from '../../../../shared/ui/form/error-text/error-text.component';
+import { SkeletonLoaderComponent } from '../../../../shared/ui/skeleton-loader/skeleton-loader.component';
+import { deletePost } from '../../data-access/store/blogs.actions';
 
 @Component({
   selector: 'app-blog',
@@ -24,12 +32,19 @@ import { EditBlogFormComponent } from '../../ui/edit-blog-form/edit-blog-form.co
     BlogCommentFormComponent,
     BlogCommentComponent,
     EditBlogFormComponent,
+    SkeletonLoaderComponent,
+    ErrorTextComponent,
+    CommonModule,
   ],
   templateUrl: './single-blog.component.html',
 })
 export class SingleBlogComponent implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
+  private readonly store = inject(Store<AppState>);
+
+  postState$ = this.store.select(selectPostState);
+
   faPen = signal(faPen);
   faTrash = signal(faTrash);
   faXmark = signal(faXmark);
@@ -42,9 +57,8 @@ export class SingleBlogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub.add = this.route.params.subscribe((param) => {
-      const blog = mockblog.find((blog) => blog.id == param['id']);
-      if (blog) {
-        // return this.store.disp
+      if (param['id']) {
+        return this.store.dispatch(getPost({ id: param['id'] }));
       }
       this.router.navigate(['/404']);
     });
@@ -56,5 +70,9 @@ export class SingleBlogComponent implements OnInit, OnDestroy {
 
   openModal() {
     return this.editModal.nativeElement.showModal();
+  }
+
+  deletePost(id: string) {
+    return this.store.dispatch(deletePost({ id }));
   }
 }
