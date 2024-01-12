@@ -16,11 +16,11 @@ import { CommonModule } from '@angular/common';
 import { mockblog } from '../../data-access/service/mock-api';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../shared/data-access/store/app.state';
-import { getPosts } from '../../data-access/store/blog.actions';
+import { getPosts } from '../../data-access/store/blogs.actions';
 import {
   selectBlog,
   selectBlogAll,
-} from '../../data-access/store/blog.selector';
+} from '../../data-access/store/blogs.selector';
 import { debounceTime, distinctUntilChanged, fromEvent, map, tap } from 'rxjs';
 import { SubscriptionHandler } from '../../../../shared/utils/sub-handler/subscription-handler';
 import { PostParamsInterface } from '../../data-access/service/post.service';

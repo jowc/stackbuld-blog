@@ -10,10 +10,10 @@ import { Store } from '@ngrx/store';
 import { ButtonComponent } from '../../../../shared/ui/form/button/button.component';
 import { InputComponent } from '../../../../shared/ui/form/input/input.component';
 import { AppState } from '../../../../shared/data-access/store/app.state';
-import { addPost } from '../../data-access/store/blog.actions';
+import { addPost } from '../../data-access/store/blogs.actions';
 import { PostCreateInterface } from '../../../../shared/utils/types/model';
 import { environment } from '../../../../../environments/environment.development';
-import { selectBlogAll } from '../../data-access/store/blog.selector';
+import { selectBlogAll } from '../../data-access/store/blogs.selector';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ErrorTextComponent } from '../../../../shared/ui/form/error-text/error-text.component';
 

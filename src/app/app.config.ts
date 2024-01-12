@@ -12,7 +12,7 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { BlogEffects } from './pages/blog/data-access/store/blog.effect';
+import { BlogEffects } from './pages/blog/data-access/store/blogs.effect';
 import { AppReducer } from './shared/data-access/store/app.state';
 
 export const appConfig: ApplicationConfig = {

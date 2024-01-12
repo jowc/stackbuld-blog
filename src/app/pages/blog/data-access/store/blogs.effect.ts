@@ -10,7 +10,7 @@ import {
   concatMap,
 } from 'rxjs/operators';
 import { PostService } from '../service/post.service';
-import * as postActions from './blog.actions';
+import * as postActions from './blogs.actions';
 
 @Injectable()
 export class BlogEffects {

@@ -43,7 +43,9 @@ export class SingleBlogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub.add = this.route.params.subscribe((param) => {
       const blog = mockblog.find((blog) => blog.id == param['id']);
-      if (blog) return this.blog.set(blog);
+      if (blog) {
+        // return this.store.disp
+      }
       this.router.navigate(['/404']);
     });
   }

@@ -14,7 +14,7 @@ export class PostService {
 
   getPosts(params?: PostParamsInterface) {
     return this.http.get<models.ListInterface>(
-      `${environment.liveServer}/user/${environment['app-id']}/post`,
+      `${environment.liveServer}/post`,
       { params: { ...params } }
     );
   }
