@@ -1,7 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 import * as models from '../../../../shared/utils/types/model';
+import { PostParamsInterface } from '../service/post.service';
 
-export const getPosts = createAction('[blog feature] get posts');
+export const getPosts = createAction(
+  '[blog feature] get posts',
+  props<{ params: PostParamsInterface }>()
+);
 export const getPostsSuccess = createAction(
   '[blog feature] get post success',
   props<{ posts: models.ListInterface }>()

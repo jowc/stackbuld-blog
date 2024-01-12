@@ -1,13 +1,24 @@
 <section class="my-24 sm:my-40 flex flex-col gap-y-10 items-center">
 
     <section class="flex justify-center pb-10 w-72 sm:max-w-xl sm:w-full border-b border-solid border-gray-100">
-        <stackbuld-input class="w-full" type="search" label="search" [showLable]="false" [showPlacehoder]="false"
+        <stackbuld-input #searchBar class="w-full" type="text" label="search" [showLable]="false" [showPlacehoder]="false"
             placeholder="Search blog" [formControl]="searchBlog" />
     </section>
 
     <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
-        @if((blogsAll$|async)?.status === 'success'){
+        @if((blogsAll$|async)?.status === 'loading'){
+        <div class="w-full h-72">
+            <stackbuld-skeleton />
+        </div>
+        <div class="w-full h-72">
+            <stackbuld-skeleton />
+        </div>
+        <div class="w-full h-72">
+            <stackbuld-skeleton />
+        </div>
+        
+        } @else if ((blogsAll$|async)?.status === 'success') {
         @for (blogPost of (blogs$ | async)| paginate: { itemsPerPage: (blogsAll$|async)?.data?.limit, currentPage:
         (blogsAll$|async)?.data?.page,
         totalItems:
@@ -15,16 +26,19 @@
         track
         blogPost?.id) {
         <app-blog-card [data]="blogPost" [routerLink]="['.', blogPost?.id]" [relativeTo]="route" />
+                }
         }
-        } @else {
-        {{(blogsAll$|async)?.message}}
+        @else {
+        <div class="sm:col-span-3 text-center">
+            {{(blogsAll$|async)?.message}}
+        </div>
         }
         
         
         </section>
 
     <section>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <pagination-controls (pageChange)="paginatorEvents($event)"></pagination-controls>
     </section>
 
 </section>

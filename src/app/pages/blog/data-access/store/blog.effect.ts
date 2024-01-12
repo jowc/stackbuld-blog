@@ -20,8 +20,8 @@ export class BlogEffects {
   loadPosts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(postActions.getPosts),
-      switchMap(() =>
-        this.postService.getPosts().pipe(
+      switchMap(({ params, type }) =>
+        this.postService.getPosts(params).pipe(
           //   tap((posts) => console.log(posts)),
           map((posts) => postActions.getPostsSuccess({ posts })),
           catchError((error) => {

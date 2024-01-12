@@ -3,13 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import * as models from '../../../../shared/utils/types/model';
 import { environment } from '../../../../../environments/environment.development';
 
+export interface PostParamsInterface {
+  limit?: number;
+  page?: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class PostService {
   private readonly http = inject(HttpClient);
 
-  getPosts() {
+  getPosts(params?: PostParamsInterface) {
     return this.http.get<models.ListInterface>(
-      `${environment.liveServer}/post`
+      `${environment.liveServer}/user/${environment['app-id']}/post`,
+      { params: { ...params } }
     );
   }
 
