@@ -52,7 +52,10 @@ export const BlogsReducer = createReducer(
   })),
   on(BlogActions.addPostSuccess, (state, { post }) => ({
     ...state,
-    data: { post, ...state.data.data },
+    data: {
+      ...(state.data as ListInterface),
+      data: [post, ...(state.data as ListInterface).data],
+    },
     message: '',
     status: StatusEnum.success,
   })),
@@ -68,11 +71,14 @@ export const BlogsReducer = createReducer(
   })),
   on(BlogActions.deletePostSuccess, (state, { id }) => ({
     ...state,
-    data: (<PostPreviewInterface[]>state.data.data).filter(
-      (post) => post.id === id
-    ),
+    data: {
+      ...state.data,
+      data: (state.data?.data as PostPreviewInterface[])?.filter(
+        (post) => post.id === id
+      ),
+    } as ListInterface,
     message: '',
-    status: StatusEnum.loading,
+    status: StatusEnum.success,
   })),
   on(BlogActions.deletePostFailure, (state, { message }) => ({
     ...state,

@@ -25,7 +25,6 @@ export class BlogEffects {
       ofType(postsAction.getPosts),
       switchMap(({ params, type }) =>
         this.postService.getPosts(params).pipe(
-          //   tap((posts) => console.log(posts)),
           map((posts) => postsAction.getPostsSuccess({ posts })),
           catchError((error) => {
             return of(postsAction.getPostsFailure({ message: error.message }));
@@ -40,7 +39,6 @@ export class BlogEffects {
       ofType(postActions.getPost),
       switchMap(({ id, type }) =>
         this.postService.getPost(id).pipe(
-          //   tap((posts) => console.log(posts)),
           map((post) => postActions.getPostSuccess({ post })),
           catchError((error) => {
             return of(postActions.getPostFailure({ message: error.message }));
@@ -55,7 +53,10 @@ export class BlogEffects {
       ofType(postsAction.addPost),
       concatMap(({ post, type }) =>
         this.postService.createPost(post).pipe(
-          map((post) => postsAction.addPostSuccess({ post })),
+          map((post) => {
+            this.router.navigate(['/']);
+            return postsAction.addPostSuccess({ post });
+          }),
           catchError((error) =>
             of(postsAction.addPostFailure({ message: error.message }))
           )
@@ -70,7 +71,6 @@ export class BlogEffects {
       switchMap(({ post, id, type }) =>
         this.postService.updatePost(id, post).pipe(
           map((post) => {
-            console.log({ post });
             return postActions.editPostSuccess({ post });
           }),
           catchError((error) =>

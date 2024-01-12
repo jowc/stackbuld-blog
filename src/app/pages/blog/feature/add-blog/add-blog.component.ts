@@ -53,7 +53,7 @@ export class AddBlogComponent {
   onSubmit() {
     const payload = {
       ...this.createPostForm.value,
-      owner: environment['app-id'],
+      owner: environment['user-id'],
       tags: [this.createPostForm.value.tags],
     };
     this.store.dispatch(addPost({ post: payload as PostCreateInterface }));

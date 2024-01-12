@@ -57,6 +57,7 @@ export class SingleBlogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub.add = this.route.params.subscribe((param) => {
+      console.log('called');
       if (param['id']) {
         return this.store.dispatch(getPost({ id: param['id'] }));
       }
