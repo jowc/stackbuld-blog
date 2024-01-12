@@ -3,28 +3,17 @@
     <section class="flex items-center justify-between w-full max-w-6xl">
 
         <div>
-            <img class="w-44" src="assets/stackbuld-logo.webp" width="180" />
+            <img class="w-44" src="assets/stackbuld-logo.webp" width="180" routerLink="/" />
         </div>
 
         <div class="flex items-center gap-x-5">
 
             <div>
-                <a class="no-underline" routerLink="">Home</a>
+                <a class="no-underline" routerLink="/" routerLinkActive="/">Home</a>
             </div>
-            <div class="relative group">
-                <span class="block cursor-pointer">Tags</span>
-
-                <section
-                    class="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute transition-all duration-200 ease-linear">
-                    <div class="bg-white flex flex-col gap-y-2 mt-7 p-4 min-w-36 shadow">
-                        <a class="block cursor-pointer" href="">Cats</a>
-                        <a class="block cursor-pointer" href="">Dogs</a>
-                        <a class="block cursor-pointer" href="">Money</a>
-                    </div>
-                </section>
-            </div>
+            
             <div>
-                <a class="no-underline" routerLink="">Add Blog</a>
+                <a class="no-underline" routerLink="/blog/add-blog">Add Blog</a>
             </div>
 
         </div>
@@ -39,7 +28,7 @@
     <section class="flex items-center justify-between w-full max-w-6xl">
 
         <div>
-            <img class="w-32" src="assets/stackbuld-logo.webp" width="120" />
+            <img class="w-32" src="assets/stackbuld-logo.webp" width="120" routerLink="/" />
         </div>
 
         <div>
@@ -59,25 +48,12 @@
 
         <div class="flex flex-col gap-y-2 backdrop-blur bg-white p-4">
 
-            <div>
-                <a class="no-underline" routerLink="">Home</a>
+            <div routerLink="/">
+                <a class="no-underline">Home</a>
             </div>
-            <div class="">
-                <div (click)="tabOpen.set(!tabOpen())">Tags</div>
-
-                @if (tabOpen()) {
-                <section class="mt-2 mx-1 p-3 bg-gray-50 transition-all duration-200 ease-linear">
-                    <div class="flex flex-col gap-y-2">
-                        <a class="block cursor-pointer" href="">Cats</a>
-                        <a class="block cursor-pointer" href="">Dogs</a>
-                        <a class="block cursor-pointer" href="">Money</a>
-                    </div>
-                </section>
-                }
-
-            </div>
-            <div>
-                <a class="no-underline" routerLink="">Add Blog</a>
+            
+            <div routerLink="/blog/add-blog">
+                <a class="no-underline">Add Blog</a>
             </div>
 
         </div>

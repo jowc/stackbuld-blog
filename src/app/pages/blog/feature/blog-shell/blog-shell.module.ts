@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { BlogsReducer } from '../../data-access/store/blog.reducers';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -8,6 +6,11 @@ const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('../blog/blog.component').then((m) => m.BlogComponent),
+  },
+  {
+    path: 'add-blog',
+    loadComponent: () =>
+      import('../add-blog/add-blog.component').then((m) => m.AddBlogComponent),
   },
   {
     path: ':id',
@@ -19,9 +22,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    // StoreModule.forFeature('blogs', BlogsReducer),
-  ],
+  imports: [RouterModule.forChild(routes)],
 })
 export class BlogShellModule {}

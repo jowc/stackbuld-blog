@@ -1,0 +1,19 @@
+<div class="p-4">
+    <h5>Edit Post</h5>
+    <form class="mt-3 flex flex-col gap-y-5" [formGroup]="editForm" (submit)="submit()">
+        <stackbuld-input type="text" label="image" [showLable]="true" placeholder="post image url"
+            formControlName="image" />
+        <textarea class="w-full h-28 p-3" name="comment" id="" cols="20" placeholder="post body"
+            formControlName="text"></textarea>
+        @if (formText?.invalid && formText?.dirty) {
+        <stackbuld-error message="this field is required and should be 6-50 characters" />
+        }
+        
+        @if ((blogState$|async)?.status === 'error') {
+        <stackbuld-error [message]="(blogState$|async)?.message" />
+        }
+        
+        <stackbuld-button class="w-3/5" type="submit" text="Edit Post" [loading]="(blogState$| async)?.status === 'loading'"
+            [disabled]="editForm.invalid" />
+    </form>
+</div>
