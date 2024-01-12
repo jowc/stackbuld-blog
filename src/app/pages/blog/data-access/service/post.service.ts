@@ -28,14 +28,14 @@ export class PostService {
   createPost(body: models.PostCreateInterface) {
     return this.http.post<models.PostPreviewInterface>(
       `${environment.liveServer}/post/create`,
-      { body }
+      { ...body }
     );
   }
 
   updatePost(id: string, body: Partial<models.PostCreateInterface>) {
     return this.http.put<models.PostPreviewInterface>(
       `${environment.liveServer}/post/${id}`,
-      { body }
+      { ...body }
     );
   }
 
