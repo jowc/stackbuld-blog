@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { BlogsReducer } from '../../data-access/store/blog.reducers';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [

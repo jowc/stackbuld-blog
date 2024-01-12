@@ -26,7 +26,7 @@ export const initialState: BlogsStateInterface = {
   status: StatusEnum.pending,
 };
 
-export const BlogsReducer = createReducer(
+export const BlogReducer = createReducer(
   initialState,
   on(BlogActions.getPosts, (state) => ({
     ...state,

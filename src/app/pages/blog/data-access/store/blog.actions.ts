@@ -30,7 +30,7 @@ export const editPost = createAction(
 );
 export const editPostSuccess = createAction(
   '[blog feature] edit post success',
-  props<{ post: models.PostInterface }>()
+  props<{ post: models.PostPreviewInterface }>()
 );
 export const editPostFailure = createAction(
   '[blog feature] edit post failure',

@@ -1,5 +1,5 @@
 export interface ListInterface {
-  data: PostPreviewInterface[] | UserPreviewInterface[] | CommentInterface[];
+  data: PostPreviewInterface[];
   total: number;
   page: number;
   limit: number;

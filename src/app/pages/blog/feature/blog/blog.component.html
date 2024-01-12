@@ -6,10 +6,20 @@
     </section>
 
     <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    
-        @for (blogPost of blogs| paginate: { itemsPerPage: 9, currentPage: p, totalItems: blogs.length}; track $index) {
-        <app-blog-card [data]="blogPost" [routerLink]="['.', blogPost.id]" [relativeTo]="route" />
+
+        @if((blogsAll$|async)?.status === 'success'){
+        @for (blogPost of (blogs$ | async)| paginate: { itemsPerPage: (blogsAll$|async)?.data?.limit, currentPage:
+        (blogsAll$|async)?.data?.page,
+        totalItems:
+        (blogsAll$|async)?.data?.total};
+        track
+        blogPost?.id) {
+        <app-blog-card [data]="blogPost" [routerLink]="['.', blogPost?.id]" [relativeTo]="route" />
         }
+        } @else {
+        {{(blogsAll$|async)?.message}}
+        }
+        
         
         </section>
 

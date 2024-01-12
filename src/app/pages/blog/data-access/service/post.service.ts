@@ -4,7 +4,7 @@ import * as models from '../../../../shared/utils/types/model';
 import { environment } from '../../../../../environments/environment.development';
 
 @Injectable({ providedIn: 'root' })
-export class ServiceNameService {
+export class PostService {
   private readonly http = inject(HttpClient);
 
   getPosts() {
