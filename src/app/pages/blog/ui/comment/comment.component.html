@@ -1,7 +1,10 @@
-<section class="p-3 bg-gray-100 text-gray-800 rounded">
+<section class="p-3 bg-gray-100 text-gray-800 w-full rounded">
 
-    <p>We believe creating beautiful websites should not be expensive. That's why Astra is free for everyone. Get
-        started for free and extend with affordable packages.</p>
+    <p>{{comment.message}}</p>
+    
+    <span class="block text-right mt-3">By: {{comment.owner.firstName}} {{comment.owner.lastName}}</span>
 
-    <span class="block text-right mt-3">By: Joseph Chikeme</span>
+    <div class="flex justify-end mt-2 text-red-500 cursor-pointer" (click)="deletePost(comment.id)">
+        <fa-icon [icon]="faTrash()" />
+    </div>
 </section>

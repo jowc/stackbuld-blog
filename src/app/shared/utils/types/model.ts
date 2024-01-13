@@ -4,6 +4,12 @@ export interface ListInterface {
   page: number;
   limit: number;
 }
+export interface CommentListInterface {
+  data: CommentInterface[];
+  total: number;
+  page: number;
+  limit: number;
+}
 
 export interface UserPreviewInterface {
   id: string;

@@ -25,9 +25,22 @@ export class PostService {
     );
   }
 
+  getPostComments(id: string) {
+    return this.http.get<models.CommentInterface[]>(
+      `${environment.liveServer}/post/${id}/comment`
+    );
+  }
+
   createPost(body: models.PostCreateInterface) {
     return this.http.post<models.PostPreviewInterface>(
       `${environment.liveServer}/post/create`,
+      { ...body }
+    );
+  }
+
+  createPostComment(body: models.CommentCreateInterface) {
+    return this.http.post<models.CommentInterface>(
+      `${environment.liveServer}/comment/create`,
       { ...body }
     );
   }
@@ -41,5 +54,9 @@ export class PostService {
 
   deletePost(id: string) {
     return this.http.delete<string>(`${environment.liveServer}/post/${id}`);
+  }
+
+  deletePostComment(id: string) {
+    return this.http.delete<string>(`${environment.liveServer}/comment/${id}`);
   }
 }

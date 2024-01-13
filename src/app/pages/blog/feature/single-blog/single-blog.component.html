@@ -53,7 +53,20 @@
 
             <app-comment-form />
 
-            <app-comment />
+            @for(comment of (commentState$ | async)?.comments?.data; track comment.id) {
+            <app-comment [comment]="comment" />
+            }
+            
+            @if((commentState$ | async)?.status === 'loading'){
+            <div class="h-20 w-full">
+                <stackbuld-skeleton />
+            </div>
+            
+            <div class="h-20 w-full mt-3">
+                <stackbuld-skeleton />
+            </div>
+            }
+
 
         </section>
 
@@ -61,9 +74,9 @@
 
 </section>
 }@else if ((postState$ | async)?.status === 'loading') {
-<stackbuld-skeleton class="h-80" />
-<stackbuld-skeleton class="h-70 mt-4" />
-<stackbuld-skeleton class="h-40 mt-3" />
+<stackbuld-skeleton class="h-80 w-full" />
+<stackbuld-skeleton class="h-70 w-full mt-4" />
+<stackbuld-skeleton class="h-40 w-full mt-3" />
 }
 @else {
 <stackbuld-error [message]="(postState$ | async)?.message" />

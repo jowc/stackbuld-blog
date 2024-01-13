@@ -14,7 +14,7 @@ export enum StatusEnum {
 }
 
 export interface BlogsStateInterface {
-  data: ListInterface | any;
+  data: ListInterface;
   message: string;
   status: StatusEnum;
 }
@@ -22,7 +22,12 @@ export interface BlogsStateInterface {
 // write a complete reducer using the above interface
 
 export const initialState: BlogsStateInterface = {
-  data: null,
+  data: {
+    data: [],
+    total: 0,
+    page: 0,
+    limit: 0,
+  },
   message: '',
   status: StatusEnum.pending,
 };
@@ -53,8 +58,8 @@ export const BlogsReducer = createReducer(
   on(BlogActions.addPostSuccess, (state, { post }) => ({
     ...state,
     data: {
-      ...(state.data as ListInterface),
-      data: [post, ...(state.data as ListInterface).data],
+      ...state.data,
+      data: [post, ...state.data.data],
     },
     message: '',
     status: StatusEnum.success,
@@ -73,12 +78,10 @@ export const BlogsReducer = createReducer(
     ...state,
     data: {
       ...state.data,
-      data: (state.data?.data as PostPreviewInterface[])?.filter(
-        (post) => post.id === id
-      ),
-    } as ListInterface,
-    message: '',
-    status: StatusEnum.success,
+      data: state.data.data.filter((comment) => comment.id !== id),
+      message: '',
+      status: StatusEnum.success,
+    },
   })),
   on(BlogActions.deletePostFailure, (state, { message }) => ({
     ...state,

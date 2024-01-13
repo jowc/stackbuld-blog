@@ -23,6 +23,8 @@ import { CommonModule } from '@angular/common';
 import { ErrorTextComponent } from '../../../../shared/ui/form/error-text/error-text.component';
 import { SkeletonLoaderComponent } from '../../../../shared/ui/skeleton-loader/skeleton-loader.component';
 import { deletePost } from '../../data-access/store/blogs.actions';
+import { getComments } from './data-access/store/comment.actions';
+import { selectCommentState } from './data-access/store/comment.selector';
 
 @Component({
   selector: 'app-blog',
@@ -44,6 +46,7 @@ export class SingleBlogComponent implements OnInit, OnDestroy {
   private readonly store = inject(Store<AppState>);
 
   postState$ = this.store.select(selectPostState);
+  commentState$ = this.store.select(selectCommentState);
 
   faPen = signal(faPen);
   faTrash = signal(faTrash);
@@ -57,9 +60,9 @@ export class SingleBlogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub.add = this.route.params.subscribe((param) => {
-      console.log('called');
       if (param['id']) {
-        return this.store.dispatch(getPost({ id: param['id'] }));
+        this.store.dispatch(getPost({ id: param['id'] }));
+        return this.store.dispatch(getComments({ id: param['id'] }));
       }
       this.router.navigate(['/404']);
     });
