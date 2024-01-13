@@ -16,7 +16,7 @@ export class CommentEffects {
   private readonly actions$ = inject(Actions);
   private readonly postService = inject(PostService);
 
-  loadPosts$ = createEffect(() =>
+  loadComment$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CommentActions.getComments),
       switchMap(({ id, type }) =>
@@ -32,7 +32,7 @@ export class CommentEffects {
     )
   );
 
-  addPost$ = createEffect(() =>
+  addComment$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CommentActions.addComment),
       concatMap(({ comment, type }) =>
@@ -48,11 +48,11 @@ export class CommentEffects {
     )
   );
 
-  deletePost$ = createEffect(() =>
+  deleteComment$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CommentActions.deleteComment),
       mergeMap(({ id, type }) =>
-        this.postService.deletePost(id).pipe(
+        this.postService.deletePostComment(id).pipe(
           map((post) => {
             return CommentActions.deleteCommentSuccess({ id });
           }),

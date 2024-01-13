@@ -51,7 +51,7 @@
 
         <section class="flex flex-col items-start gap-y-10">
 
-            <app-comment-form />
+            <app-comment-form [postId]="post.id" />
 
             @for(comment of (commentState$ | async)?.comments?.data; track comment.id) {
             <app-comment [comment]="comment" />
