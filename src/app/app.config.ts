@@ -14,6 +14,7 @@ import {
 } from '@angular/common/http';
 import { BlogEffects } from './pages/blog/data-access/store/blogs.effect';
 import { AppReducer } from './shared/data-access/store/app.state';
+import { CommentEffects } from './pages/blog/feature/single-blog/data-access/store/comment.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +26,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideStore(AppReducer),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects([BlogEffects]),
+    provideEffects([BlogEffects, CommentEffects]),
   ],
 };
