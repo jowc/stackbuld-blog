@@ -27,14 +27,14 @@
 
     <section class="flex items-center justify-between w-full max-w-6xl">
 
-        <div>
+        <div class="w-4/6">
             <img class="w-32" src="assets/stackbuld-logo.webp" width="120" routerLink="/" />
         </div>
 
-        <div>
+        <div class="w-1/6">
 
-            <div (click)="menuOpen.set(!menuOpen())">
-                <fa-icon [icon]="faBars()" />
+            <div class="flex justify-end" (click)="menuOpen.set(!menuOpen())">
+                <span><fa-icon [icon]="faBars()" /></span>
             </div>
 
         </div>
