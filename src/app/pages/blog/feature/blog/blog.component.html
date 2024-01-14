@@ -7,7 +7,17 @@
 
     <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
-        @if((blogState$|async)?.status === 'loading'){
+        @if((blogState$|async)?.status === 'success'){
+            @for (blogPost of (blogState$ | async)?.data?.data| paginate: { itemsPerPage: (blogState$|async)?.data?.limit,
+            currentPage:
+            (blogState$|async)?.data?.page,
+            totalItems:
+            (blogState$|async)?.data?.total};
+            track
+            blogPost?.id) {
+            <app-blog-card [data]="blogPost" [routerLink]="['.', blogPost?.id]" [relativeTo]="route" />
+            }
+        } @else if ((blogState$|async)?.status === 'loading') {
         <div class="w-full h-72">
             <stackbuld-skeleton />
         </div>
@@ -17,17 +27,6 @@
         <div class="w-full h-72">
             <stackbuld-skeleton />
         </div>
-        
-        } @else if ((blogState$|async)?.status === 'success') {
-        @for (blogPost of (blogState$ | async)?.data?.data| paginate: { itemsPerPage: (blogState$|async)?.data?.limit,
-        currentPage:
-        (blogState$|async)?.data?.page,
-        totalItems:
-        (blogState$|async)?.data?.total};
-        track
-        blogPost?.id) {
-        <app-blog-card [data]="blogPost" [routerLink]="['.', blogPost?.id]" [relativeTo]="route" />
-                }
         }
         @else {
         <div class="sm:col-span-3 text-center">

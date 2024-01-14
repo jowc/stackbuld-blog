@@ -38,13 +38,13 @@
         </div>
 
         <div class="flex item-baseline justify-between">
-            <div class="flex item-baseline justify-between gap-x-2 text-primary cursor-pointer" (click)="openModal()">
-                <fa-icon [icon]="faPen()" />
+            <div class="w-1/6 flex item-baseline gap-x-2 text-primary cursor-pointer" (click)="openModal()">
+                <fa-icon class="w-1/4" [icon]="faPen()" />
                 <span>edit</span>
             </div>
 
-            <div class="flex item-baseline justify-between gap-x-2 text-red-500 cursor-pointer" (click)="deletePost(post.id)">
-                <fa-icon [icon]="faTrash()" />
+            <div class="w-2/6 flex item-baseline gap-x-2 text-red-500 cursor-pointer" (click)="deletePost(post.id)">
+                <fa-icon class="w-1/4" [icon]="faTrash()" />
                 <span>delete</span>
             </div>
         </div>

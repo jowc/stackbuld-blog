@@ -14,7 +14,7 @@ export enum StatusEnum {
 }
 
 export interface BlogsStateInterface {
-  data: ListInterface;
+  data: ListInterface | any;
   message: string;
   status: StatusEnum;
 }
@@ -78,7 +78,7 @@ export const BlogsReducer = createReducer(
     ...state,
     data: {
       ...state.data,
-      data: state.data.data.filter((comment) => comment.id !== id),
+      data: state.data.data.filter((commentId: string) => commentId !== id),
       message: '',
       status: StatusEnum.success,
     },
